@@ -10,6 +10,8 @@ Ratebeer::Application.routes.draw do
   # root 'welcome#index'
   root 'breweries#index'
 
+  get 'ratings', to: 'ratings#index'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
