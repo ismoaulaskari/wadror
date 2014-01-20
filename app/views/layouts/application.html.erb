@@ -7,9 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<p class="navi">
-<%= link_to 'Breweries', breweries_path %> <%= link_to 'Beers', beers_path %>
-<p/>
+
+<div class="navi">
+<%= link_to 'Breweries', breweries_path %>
+<%= link_to 'Beers', beers_path %>
+<div/>
+
 <%= yield %>
 
 </body>
