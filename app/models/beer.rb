@@ -11,8 +11,12 @@ class Beer < ActiveRecord::Base
       @sum += rate.score
       @no = @no + 1
     end
-    @average = @sum / @no
-
+    if @no > 0
+      @average = @sum / @no
+    else
+      puts 0
+    end
+   
 #    self.ratings.each.inject { |sum, n| sum + n }
 
     #@sum = (self.ratings.each).sum
