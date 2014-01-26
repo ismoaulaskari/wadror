@@ -10,6 +10,12 @@ class Beer < ActiveRecord::Base
       @no = @no + 1
     end
     @average = @sum / @no
+
+#    self.ratings.each.inject { |sum, n| sum + n }
+
+    #@sum = (self.ratings.each).sum
+#    @average = @sum / self.ratings.count
+
     "Has #{@no} ratings, average #{@average}"
   end
 
