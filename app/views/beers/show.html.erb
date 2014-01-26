@@ -15,5 +15,11 @@
   <%= @beer.brewery.name %>
 </p>
 
+<p>
+  <strong>Rating:</strong>
+  <%= @beer.average_rating %>
+</p>
+
+
 <%= link_to 'Edit', edit_beer_path(@beer) %> |
 <%= link_to 'Back', beers_path %>

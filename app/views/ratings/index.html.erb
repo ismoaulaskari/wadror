@@ -2,7 +2,7 @@
 
 <ul>
  <% @ratings.each do |rating| %>
-   <li> <%= rating %> </li>
+   <li> <%= rating %> :  <%= rating.score %> </li>
  <% end %>
 </ul>
 <p><%= @ratings.count %> ratings</p>
