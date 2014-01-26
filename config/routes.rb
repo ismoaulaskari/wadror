@@ -11,6 +11,8 @@ Ratebeer::Application.routes.draw do
   root 'breweries#index'
 
   get 'ratings', to: 'ratings#index'
+  get 'ratings/new', to:'ratings#new'
+  post 'ratings', to: 'ratings#create'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
