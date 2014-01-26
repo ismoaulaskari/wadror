@@ -1,3 +1,5 @@
+include ActionView::Helpers::TextHelper
+
 class Beer < ActiveRecord::Base
   belongs_to :brewery
   has_many :ratings
@@ -16,7 +18,8 @@ class Beer < ActiveRecord::Base
     #@sum = (self.ratings.each).sum
 #    @average = @sum / self.ratings.count
 
-    "Has #{@no} ratings, average #{@average}"
+    @rates = pluralize(@no, "rating")
+    "Has #{@rates}, average #{@average}"
   end
 
   def to_s
