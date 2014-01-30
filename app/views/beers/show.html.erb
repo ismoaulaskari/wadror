@@ -17,7 +17,8 @@
 
 <p>
   <strong>Rating:</strong>
-  <%= @beer.average_rating %>
+  Has <%= pluralize(@beer.ratings.count,'rating') %>, average rating <%= @beer.average_rating %>
+
 </p>
 
 
