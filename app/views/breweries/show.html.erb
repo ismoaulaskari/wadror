@@ -17,6 +17,8 @@
  <% end %>
 </p>
 
+<p><%= @brewery.ratings.count %> ratings, average rating <%= @brewery.average_rating %></p>
+
 <%= link_to 'Edit', edit_brewery_path(@brewery) %> |
 <%= link_to 'Back', breweries_path %>
 
