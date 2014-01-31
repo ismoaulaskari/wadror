@@ -22,6 +22,8 @@
  <%= link_to 'Rate a beer', new_rating_path %>
 <% else %>
   <%= link_to 'Signin', signin_path %>
+|
+  <%= link_to 'Signup', signup_path %>
 <% end %>
 |
 <% if session[:last_rating].nil? %>
