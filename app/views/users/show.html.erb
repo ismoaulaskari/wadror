@@ -4,6 +4,18 @@
   <strong>Username:</strong>
   <%= @user.username %>
 </p>
+<p>
+  User has made <%= @user.ratings.count %> ratings. Average rating <%= @user.average_rating %>
+</p>
+<p>
+  <strong>Ratings:</strong>
+<ul>
+ <% @user.ratings.each do |rating| %>
+   <li><%= rating.beer.name %> : <%= rating.score %> <%= link_to 'delete', rating, method: :delete %></li>
+ <% end %>
+</ul>
+</p>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
