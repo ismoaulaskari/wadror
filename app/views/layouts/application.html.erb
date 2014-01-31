@@ -20,9 +20,14 @@
 <% else %>
   previous rating: <%= session[:last_rating] %>
 <% end %>
+&nbsp;
+&nbsp;
+&nbsp;
+<% if not session[:user_id].nil? %>
+  Signed in as <%= User.find(session[:user_id]).username %>
+<% end %>
 
 </div>
-
 <%= yield %>
 
 </body>
