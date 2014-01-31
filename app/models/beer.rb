@@ -5,6 +5,11 @@ class Beer < ActiveRecord::Base
   belongs_to :brewery
   has_many :ratings, dependent: :destroy
 
+  validates :name, presence: true
+  validates :brewery_id, presence: true
+  validates :style, presence: true
+
+
 #  def average_rating2
 #    @sum = 0
 #    @no = 0
