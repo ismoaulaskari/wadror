@@ -12,6 +12,15 @@
 <%= link_to 'Breweries', breweries_path %>
 <%= link_to 'Beers', beers_path %>
 <%= link_to 'Ratings', ratings_path %>
+&nbsp;
+&nbsp;
+&nbsp;
+<% if session[:last_rating].nil? %>
+  no ratings given
+<% else %>
+  previous rating: <%= session[:last_rating] %>
+<% end %>
+
 </div>
 
 <%= yield %>

@@ -1,4 +1,6 @@
 Ratebeer::Application.routes.draw do
+  resources :users
+
   resources :beers
 
   resources :breweries
@@ -15,6 +17,7 @@ Ratebeer::Application.routes.draw do
   get 'ratings', to: 'ratings#index'
   get 'ratings/new', to:'ratings#new'
   post 'ratings', to: 'ratings#create'
+  get 'signup', to: 'users#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
