@@ -23,8 +23,8 @@
 &nbsp;
 &nbsp;
 &nbsp;
-<% if not session[:user_id].nil? %>
-  Signed in as <%= User.find(session[:user_id]).username %>
+<% if not current_user.nil? %>
+  Signed in as <%= current_user.username %>
 <% end %>
 
 </div>
