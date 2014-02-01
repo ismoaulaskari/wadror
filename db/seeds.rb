@@ -19,5 +19,6 @@ b3.beers.create name:"Hefezeizen", style:"Weizen"
 b3.beers.create name:"Helles", style:"Lager"
 b4.beers.create name:"Litku", style:"Lager"
 
-u1 = User.create username:"admin", password:"salainen",password_confirmation:"salainen"
+#u1 = User.create username:"admin", password:"salainen",password_confirmation:"salainen"
 bc1 = BeerClub.create name:"Pahan oluen kerho", year:2014, city:"Tuusula"
+bc2 = BeerClub.create name:"Hyvän oluen ystävät", year:2000, city:"Helsinnki"
