@@ -18,6 +18,15 @@
  <% end %>
 </ul>
 </p>
+<p>
+  <strong>Beer clubs:</strong>
+<ul>
+ <% @user.beer_clubs.each do |beer_club| %>
+   <li><%= beer_club.name %> 
+ <% end %>
+</ul>
+</p>
+
 
 
 <% if @user == current_user %>

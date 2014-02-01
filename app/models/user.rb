@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   validates_format_of :password, {with: /[A-Z]/, with: /[0-9]/}
   has_many :ratings, dependent: :destroy
   has_many :beers, through: :ratings
+  has_many :memberships
+  has_many :beer_clubs, through: :memberships
 
   has_secure_password
 end
