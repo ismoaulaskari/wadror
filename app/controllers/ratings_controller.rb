@@ -13,7 +13,7 @@ class RatingsController < ApplicationController
 
     if @rating.save
       session[:last_rating] = "#{@rating.beer.name} #{@rating.score} points"
-      current_user.ratings << rating
+      current_user.ratings << @rating
       redirect_to user_path current_user
     else
       @beers = Beer.all
