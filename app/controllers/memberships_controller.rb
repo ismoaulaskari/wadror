@@ -26,10 +26,8 @@ class MembershipsController < ApplicationController
   # POST /memberships
   # POST /memberships.json
   def create
-    @user = current_user
-    #@beer_club_id = params.require(:membership).permit(:beer_club_id)
-    #@membership = Membership.new(beer_club_id:@beer_club_id, user_id:@user.id)
     @membership = Membership.new(membership_params)
+    #@membershib.user = current_user
 
     respond_to do |format|
       if @membership.save
