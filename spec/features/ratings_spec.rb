@@ -51,7 +51,7 @@ describe "Rating" do
        expect{
          find(:xpath, "(//a[text()='delete'])[2]").click
        }.to change{Rating.count}.from(2).to(1)
-      save_and_open_page
+#      save_and_open_page
     end
  
   end
