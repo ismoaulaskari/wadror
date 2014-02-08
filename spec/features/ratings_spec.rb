@@ -37,6 +37,13 @@ describe "Rating" do
        expect(page).to have_content "#{beer.name} #{rating2.score} #{rating2.user.username}" 
        expect(page).to have_content "#{Rating.count} ratings"
     end
+    it "is said that user's page has his ratings and nobody elses" do
+       visit user_path(user)
+       expect(page).to have_content "#{beer.name} : #{rating1.score}" 
+       expect(page).to have_content "#{beer.name} : #{rating2.score}" 
+       expect(page).to have_content "User has made 2 ratings"
+    end
+ 
   end
 
 end
