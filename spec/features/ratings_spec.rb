@@ -11,12 +11,6 @@ describe "Rating" do
   before :each do
     sign_in(username:"Pekka", password:"Foobar1")
   end
-#  before :each do
-#    visit signin_path
-#    fill_in('username', with:'Pekka')
-#    fill_in('password', with:'Foobar1')
-#    click_button('Log in')
-#  end
 
   it "when given, is registered to the beer and user who is signed in" do
     visit new_rating_path
@@ -31,5 +25,19 @@ describe "Rating" do
     expect(beer1.ratings.count).to eq(1)
     expect(beer1.average_rating).to eq(15.0)
   end
+
+  describe "2 ratings in the db" do
+    let!(:beer) { FactoryGirl.create(:beer) }
+    let!(:rating1) { FactoryGirl.create :rating, beer:beer, user:user }
+    let!(:rating2) { FactoryGirl.create :rating2, beer:beer, user:user }
+
+    it "is said that the ratings database matches the page" do
+       visit ratings_path
+       expect(page).to have_content "#{beer.name} #{rating1.score} #{rating1.user.username}" 
+       expect(page).to have_content "#{beer.name} #{rating2.score} #{rating2.user.username}" 
+       expect(page).to have_content "#{Rating.count} ratings"
+    end
+  end
+
 end
 
