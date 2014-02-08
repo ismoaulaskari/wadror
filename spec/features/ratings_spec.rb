@@ -43,6 +43,16 @@ describe "Rating" do
        expect(page).to have_content "#{beer.name} : #{rating2.score}" 
        expect(page).to have_content "User has made 2 ratings"
     end
+     it "when deleted, ratings disappear from the database" do
+       visit user_path(user)
+       expect(page).to have_content "#{beer.name} : #{rating1.score}" 
+       expect(page).to have_content "#{beer.name} : #{rating2.score}" 
+       expect(page).to have_content "User has made 2 ratings"
+       expect{
+         find(:xpath, "(//a[text()='delete'])[2]").click
+       }.to change{Rating.count}.from(2).to(1)
+      save_and_open_page
+    end
  
   end
 
