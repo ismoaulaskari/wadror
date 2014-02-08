@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
   has_many :beer_clubs, -> { uniq }, through: :memberships
 
   has_secure_password
+
+  def favorite_beer
+  end
+
 end

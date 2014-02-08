@@ -48,5 +48,37 @@ describe User do
     end
   end
 
+  describe "with another proper password" do
+    let(:user){ FactoryGirl.create(:user) }
 
+    it "is saved once more" do
+      expect(user).to be_valid
+      expect(User.count).to eq(1)
+    end
+
+    it "and with two ratings, still has the correct average rating" do
+      user.ratings << FactoryGirl.create(:rating)
+      user.ratings << FactoryGirl.create(:rating2)
+
+      expect(user.ratings.count).to eq(2)
+      expect(user.average_rating).to eq(15.0)
+    end
+  end
+
+  it "has method for determining the favorite_beer" do
+    user = FactoryGirl.create(:user)
+    user.should respond_to :favorite_beer
+  end
+
+  it "without ratings does not have a favourite beer" do
+    user = FactoryGirl.create(:user)
+    expect(user.favorite_beer).to eq(nil)
+  end
+
+#  it "is the only rated if only one rating" do
+#      beer = FactoryGirl.create(:beer)
+#      rating = FactoryGirl.create(:rating, beer:beer, user:user)
+#
+#      expect(user.favorite_beer).to eq(beer)
+#  end
 end
