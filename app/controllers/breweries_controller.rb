@@ -1,6 +1,7 @@
 class BreweriesController < ApplicationController
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate, only: [:destroy]
+  before_action :ensure_that_signed_in, except: [:index, :show]
+#http basic auth:#   before_action :authenticate, only: [:destroy]
 
   # GET /breweries
   # GET /breweries.json
@@ -73,12 +74,12 @@ class BreweriesController < ApplicationController
       params.require(:brewery).permit(:name, :year)
     end
 
-  private
-    def authenticate
-#      raise "toteuta autentikointi"
-      admin_accounts = { "admin" => "secret", "pekka" => "beer", "arto" => "foobar", "matti" => "ittam"}
-      authenticate_or_request_with_http_basic do |username, password|
-      admin_accounts[username] == password
-    end
-  end
+#  private
+#    def authenticate
+##      raise "toteuta autentikointi"
+#      admin_accounts = { "admin" => "secret", "pekka" => "beer", "arto" => "foobar", "matti" => "ittam"}
+#      authenticate_or_request_with_http_basic do |username, password|
+#      admin_accounts[username] == password
+#    end
+#  end
 end
