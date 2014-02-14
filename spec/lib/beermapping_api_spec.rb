@@ -8,7 +8,7 @@ describe "BeermappingApi" do
     END_OF_STRING
 
     stub_request(:get, /.*tampere/).to_return(body: canned_answer, headers: { 'Content-Type' => "text/xml" })
-
+    Rails.cache.clear
     places = BeermappingApi.places_in("tampere")
 
     expect(places.size).to eq(1)
@@ -24,7 +24,7 @@ describe "BeermappingApi" do
     END_OF_STRING
 
     stub_request(:get, /.*tampere/).to_return(body: canned_answer, headers: { 'Content-Type' => "text/xml" })
-
+    Rails.cache.clear
     places = BeermappingApi.places_in("tampere")
 
     expect(places.size).to eq(0)
@@ -37,7 +37,7 @@ describe "BeermappingApi" do
     END_OF_STRING
 
     stub_request(:get, /.*tampere/).to_return(body: canned_answer, headers: { 'Content-Type' => "text/xml" })
-
+    Rails.cache.clear
     places = BeermappingApi.places_in("tampere")
 
     expect(places.size).to eq(7)

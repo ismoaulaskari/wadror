@@ -319,8 +319,15 @@
       "/home/aulaskar/.rbenv/ratebeer/lib/beermapping_api.rb": [
         1,
         1,
-        null,
         3,
+        6,
+        null,
+        null,
+        1,
+        null,
+        1,
+        3,
+        null,
         null,
         3,
         3,
@@ -330,6 +337,7 @@
         2,
         2,
         8,
+        null,
         null,
         null,
         null,
@@ -350,6 +358,6 @@
         null
       ]
     },
-    "timestamp": 1392321178
+    "timestamp": 1392324313
   }
 }
