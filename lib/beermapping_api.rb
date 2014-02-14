@@ -1,7 +1,9 @@
 class BeermappingApi
   def self.places_in(city)
-    city = city.downcase
-    Rails.cache.fetch(city, :expires_in => 24.hours) { fetch_places_in(city) }
+    unless city.nil?
+      city = city.downcase
+      Rails.cache.fetch(city, :expires_in => 24.hours) { fetch_places_in(city) }
+    end
   end
 
   private
@@ -21,8 +23,8 @@ class BeermappingApi
     end
   end
 
-#  def self.key
-#    "96ce1942872335547853a0bb3b0c24db"
-#  end
+  def self.key
+    Settings.beermapping_apikey
+  end
 end
 

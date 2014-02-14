@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<h3><%= @place.name %></h3>
+
+<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=<%= @place.street %>,+<%= @place.city %>,+<%= @place.country %>&amp;output=embed"></iframe><br />
+
+<!--
+<% @place.to_enum do |key| %>
+      <p>
+        <%= key %> :
+        <%= place.key %>
+      </p>
+<% end %>
+-->
+<pre>
+<%= @place.to_yaml%>
+</pre>
