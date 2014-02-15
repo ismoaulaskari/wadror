@@ -28,7 +28,9 @@ class MembershipsController < ApplicationController
   # POST /memberships.json
   def create
     @membership = Membership.new(membership_params)
-    #@membershib.user = current_user
+#    if (@membershib.user != current_user)  
+#      raise "Invalid user!"
+#    end
 
     respond_to do |format|
       if @membership.save
