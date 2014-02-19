@@ -1,28 +1,62 @@
 var BEERS = {};
 
 BEERS.show = function(){
-    var beer_list = [];
+    $("#beertable tr:gt(0)").remove();
+
+    var table = $("#beertable");
 
     $.each(BEERS.list, function (index, beer) {
-        beer_list.push('<li>' + beer['name'] + '</li>')
+        table.append('<tr>'
+            +'<td>'+beer['name']+'</td>'
+            +'<td>'+beer['style']+'</td>'
+            +'<td>'+beer['brewery']['name']+'</td>'
+            +'</tr>');
     });
-
-    $("#beers").html('<ul>'+ beer_list.join('') + '</ul>');
 };
 
-BEERS.reverse = function(){
-    BEERS.list.reverse();
+BEERS.sort_by_name = function(){
+    BEERS.list.sort( function(a,b){
+        return a.name.toUpperCase().localeCompare(b.name.toUpperCase());
+    });
+};
+
+BEERS.sort_by_style = function(){
+    BEERS.list.sort( function(a,b){
+        return a.style.toUpperCase().localeCompare(b.style.toUpperCase());
+    });
+};
+
+BEERS.sort_by_brewery = function(){
+    BEERS.list.sort( function(a,b){
+        return a.brewery.name.toUpperCase().localeCompare(b.brewery.name.toUpperCase());
+    });
 };
 
 $(document).ready(function () {
-    $("#reverse").click(function (e) {
-        BEERS.reverse();
+    $("#name").click(function (e) {
+        BEERS.sort_by_name();
         BEERS.show();
         e.preventDefault();
     });
 
-    $.getJSON('beers.json', function (beers) {
-        BEERS.list = beers;
+    $("#style").click(function (e) {
+        BEERS.sort_by_style();
         BEERS.show();
+        e.preventDefault();
     });
+
+    $("#brewery").click(function (e) {
+        BEERS.sort_by_brewery();
+        BEERS.show();
+        e.preventDefault();
+    });
+
+    if ( $("#beertable").length>0 ) {
+      $.getJSON('beers.json', function (beers) {
+        BEERS.list = beers;
+        BEERS.sort_by_name;
+        BEERS.show();
+      });
+    }
+
 });
