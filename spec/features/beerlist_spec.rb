@@ -34,18 +34,28 @@ describe "Beerlist page" do
 
   describe "Beerlist ordering" do
     before :each do
-      @allbeers = ["Fastenbier", "Rauchbier", "Schlenkerla"]
       @count = 2
       visit beerlist_path
+      find('table').find('tr:nth-child(2)')
     end
 
     it "seems that beers are ordered by name", js:true do
+      @allbeers = ["Fastenbier", "Lechte Weisse","Nikolai"]
       @allbeers.each do |b| 
         find('table').find("tr:nth-child(#{@count})").should have_content(b)
         @count += 1  
       end  
-      expect(page).to have_content "Nikolai"
     end
+
+    it "seems that beers are ordered by style when clicked", js:true do
+      click_link('style')
+      @allstyles = ["Lager", "Rauchbier", "Weizen"]
+      @allstyles.each do |b| 
+        find('table').find("tr:nth-child(#{@count})").should have_content(b)
+        @count += 1  
+      end  
+    end
+
   end
 
 end
