@@ -1,6 +1,6 @@
 class BreweriesController < ApplicationController
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_that_signed_in, except: [:index, :show]
+  before_action :ensure_that_signed_in, except: [:index, :show, :list]
 #http basic auth:#   before_action :authenticate, only: [:destroy]
 
   # GET /breweries
@@ -69,6 +69,9 @@ class BreweriesController < ApplicationController
         format.json { head :no_content }
       end
     end
+  end
+
+  def list
   end
 
   private
