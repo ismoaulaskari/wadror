@@ -34,6 +34,11 @@ class Beer < ActiveRecord::Base
 #    "Has #{@rates}, average #{@average}"
 #  end
 
+  def self.top(n)
+    sorted_by_rating_in_desc_order = Beer.all.sort_by{ |b| -(b.average_rating||0) }
+    sorted_by_rating_in_desc_order.take(n)
+  end
+
   def to_s
 #    "#{name} #{brewery.name}"
     "#{Brewery.find_by(id:self.brewery_id).name} :  #{self.name}"

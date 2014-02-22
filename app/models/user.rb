@@ -15,4 +15,13 @@ class User < ActiveRecord::Base
     ratings.order(score: :desc).limit(1).first.beer
   end
 
+  def self.top(n)
+    sorted_by_rating_in_desc_order = User.all.sort_by{ |b| -(b.ratings.count||0) }
+    sorted_by_rating_in_desc_order.take(n)
+  end
+
+  def to_s
+    #"#{User.find_by(id:self.user_id).username} :  #{self.username}"
+    "#{self.username}"
+  end
 end
