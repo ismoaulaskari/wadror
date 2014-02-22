@@ -29,7 +29,7 @@
  <%= form_for(@membership) do |f| %>
     <%= f.hidden_field :beer_club_id %>
     <%= f.hidden_field :user_id %>
-    <%= f.submit value:"join the club" %>
+    <%= f.submit class:"btn btn-primary" value:"join the club" %>
  <% end %>
 <%end%>
 <%= link_to 'Edit', edit_beer_club_path(@beer_club) %> |
