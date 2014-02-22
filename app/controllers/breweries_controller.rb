@@ -6,6 +6,8 @@ class BreweriesController < ApplicationController
   # GET /breweries
   # GET /breweries.json
   def index
+    @active_breweries = Brewery.active
+    @retired_breweries = Brewery.retired
     @breweries = Brewery.all
     order = params[:order] || 'name'
 
