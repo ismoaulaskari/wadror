@@ -49,6 +49,7 @@ describe "Beerlist page" do
 
     it "seems that beers are ordered by style when clicked", js:true do
       click_link('style')
+      sleep 2
       @allstyles = ["Lager", "Rauchbier", "Weizen"]
       @allstyles.each do |b| 
         find('table').find("tr:nth-child(#{@count})").should have_content(b)
