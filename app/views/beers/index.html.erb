@@ -8,8 +8,6 @@
       <th> <%= link_to 'Brewery', beers_path(order:"brewery") %> </th>
       <th>Rating</th>
       <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -26,9 +24,7 @@
  beer has some ratings
 <% end %>
 </td>
-        <!--<td><%= link_to 'Show', beer %></td>-->
-        <td><%= link_to('Edit', edit_beer_path(beer), class:'btn btn-primary') if current_user %></td>
-        <td><%= link_to('Destroy', beer, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger') if current_user %></td>
+        <td><%= edit_and_destroy_buttons(beer) %></td>
       </tr>
     <% end %>
   </tbody>

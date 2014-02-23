@@ -5,7 +5,6 @@
     <tr>
       <th></th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -13,8 +12,7 @@
     <% @memberships.each do |membership| %>
       <tr>
         <td><%= link_to 'Show', membership, class:'btn btn-primary' %></td>
-        <td><%= link_to 'Edit', edit_membership_path(membership), class:'btn btn-primary' %></td>
-        <td><%= link_to 'Destroy', membership, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger' %></td>
+        <td><%= edit_and_destroy_buttons(membership) %></td>
       </tr>
     <% end %>
   </tbody>

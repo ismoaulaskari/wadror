@@ -8,7 +8,6 @@
       <th>City</th>
       <th></th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -20,8 +19,7 @@
         <td><%= beer_club.city %></td>
         <td><%= link_to 'Show', beer_club, class:'btn btn-primary' %></td>
 	<%  if current_user %>
-        <td><%= link_to 'Edit', edit_beer_club_path(beer_club), class:'btn btn-primary' %></td>
-        <td><%= link_to 'Destroy', beer_club, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger' %></td>
+          <td><%= edit_and_destroy_buttons(beer_club) %></td>
         <%end%>
       </tr>
     <% end %>
