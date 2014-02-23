@@ -5,7 +5,7 @@
   <%= @user.username %>
 </p>
 <p>
-  User has made <%= @user.ratings.count %> ratings. Average rating <%= @user.average_rating %>
+  User has made <%= @user.ratings.count %> ratings. Average rating <%= round(@user.average_rating) %>
 </p>
 <p>
   <strong>Ratings:</strong>

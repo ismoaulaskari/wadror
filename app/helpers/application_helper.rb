@@ -8,4 +8,7 @@ module ApplicationHelper
     end
   end
 
+  def round(param)
+    number_with_precision(param, precision: 1) 
+  end
 end
