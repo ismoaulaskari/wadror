@@ -1,19 +1,19 @@
 class BreweriesController < ApplicationController
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
   before_action :ensure_that_signed_in, except: [:index, :show, :list]
-#http basic auth:#   before_action :authenticate, only: [:destroy]
+  before_action :skip_if_cached, only:[:index]
+  before_action :expire, only:[:create, :update, :destroy, :toggle_activity]
 
   # GET /breweries
   # GET /breweries.json
   def index
     @active_breweries = Brewery.active
     @retired_breweries = Brewery.retired
-    @breweries = Brewery.all
     order = params[:order] || 'name'
 
     case order
-      when 'name' then @breweries.sort_by!{ |b| b.name }
-      when 'year' then @breweries.sort_by!{ |b| b.year }
+      when 'name' then @active_breweries.sort_by!{ |b| b.name } ; @retired_breweries.sort_by!{ |b| b.name }
+      when 'year' then @active_breweries.sort_by!{ |b| b.year } ; @retired_breweries.sort_by!{ |b| b.year }
     end
   end
 
@@ -76,7 +76,7 @@ class BreweriesController < ApplicationController
   def list
   end
 
- def toggle_activity
+  def toggle_activity
     brewery = Brewery.find(params[:id])
     brewery.update_attribute :active, (not brewery.active)
 
@@ -96,12 +96,12 @@ class BreweriesController < ApplicationController
       params.require(:brewery).permit(:name, :year, :active)
     end
 
-#  private
-#    def authenticate
-##      raise "toteuta autentikointi"
-#      admin_accounts = { "admin" => "secret", "pekka" => "beer", "arto" => "foobar", "matti" => "ittam"}
-#      authenticate_or_request_with_http_basic do |username, password|
-#      admin_accounts[username] == password
-#    end
-#  end
+    def expire
+      ["brewery-name", "brewery-year"].each{ |f| expire_fragment(f) } 
+    end
+
+    def skip_if_cached
+      @order = params[:order] || 'name'
+      return render :index if fragment_exist?( "brewery-#{params[:order]}"  )
+    end
 end

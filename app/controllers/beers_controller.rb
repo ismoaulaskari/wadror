@@ -2,6 +2,7 @@ class BeersController < ApplicationController
   before_action :set_beer, only: [:show, :edit, :update, :destroy]
   before_action :set_breweries_and_styles_for_template, only: [:new, :edit, :create]
   before_action :ensure_that_signed_in, except: [:index, :show, :list, :nglist]
+  before_action :skip_if_cached, only:[:index]
 
   # GET /beers
   # GET /beers.json
@@ -37,6 +38,7 @@ class BeersController < ApplicationController
   # POST /beers
   # POST /beers.json
   def create
+    expire
     @beer = Beer.new(beer_params)
 
     respond_to do |format|
@@ -53,6 +55,7 @@ class BeersController < ApplicationController
   # PATCH/PUT /beers/1
   # PATCH/PUT /beers/1.json
   def update
+    expire
     respond_to do |format|
       if @beer.update(beer_params)
         format.html { redirect_to @beer, notice: 'Beer was successfully updated.' }
@@ -67,6 +70,7 @@ class BeersController < ApplicationController
   # DELETE /beers/1
   # DELETE /beers/1.json
   def destroy
+    expire
     if ensure_that_admin
       @beer.destroy
       respond_to do |format|
@@ -97,5 +101,14 @@ class BeersController < ApplicationController
   def set_breweries_and_styles_for_template
     @breweries = Brewery.all
     @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+  end
+
+  def expire
+    ["beerlist-name", "beerlist-brewery", "beerlist-style"].each{ |f| expire_fragment(f) } 
+  end
+
+  def skip_if_cached
+    @order = params[:order] || 'name'
+    return render :index if fragment_exist?( "beerlist-#{params[:order]}"  )
   end
 end
