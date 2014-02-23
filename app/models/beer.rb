@@ -2,7 +2,7 @@ include ActionView::Helpers::TextHelper
 
 class Beer < ActiveRecord::Base
   include RatingAverage
-  belongs_to :brewery
+  belongs_to :brewery, touch: true
   has_many :ratings, dependent: :destroy
   has_many :users, through: :ratings
   has_many :raters, -> { uniq }, through: :ratings, source: :user

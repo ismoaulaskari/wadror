@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<% cache @brewery do %>
 <h2>
   <strong>Name:</strong>
   <%= @brewery.name %>
@@ -23,6 +24,7 @@
 <p>
 Has <%= pluralize(@brewery.ratings.count,'rating') %>, average rating <%= round(@brewery.average_rating) %>
 </p>
+<% end %>
 
 <% if current_user %> 
 <%= link_to 'Edit', edit_brewery_path(@brewery) %> |
