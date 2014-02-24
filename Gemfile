@@ -76,3 +76,5 @@ group :development do
   gem 'rails_layout'
   gem 'rack-mini-profiler'
 end
+
+gem 'omniauth-facebook'

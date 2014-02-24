@@ -16,6 +16,12 @@ class SessionsController < ApplicationController
 
     end
 
+    def create_fb 
+      user = User.from_omniauth(env["omniauth.auth"])
+      session[:user_id] = user.id if not user.nil?
+      redirect_to :root
+    end
+
     def destroy
       # nollataan sessio
       session[:user_id] = nil

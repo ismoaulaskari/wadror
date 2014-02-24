@@ -29,6 +29,9 @@ Ratebeer::Application.routes.draw do
   post 'ratings', to: 'ratings#create'
   get 'signup', to: 'users#new'
   get 'signin', to: 'sessions#new'
+get 'auth/:provider/callback', to: 'sessions#create_fb'
+get 'auth/failure', to: redirect('/')
+get 'signout', to: 'sessions#destroy', as: 'signout'
   delete 'signout', to: 'sessions#destroy'
   post 'places', to:'places#search'
   get 'beerlist', to:'beers#list'
