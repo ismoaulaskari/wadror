@@ -7,6 +7,9 @@ describe "Beerlist page" do
   end
 
   before :each do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.start
+
     @brewery1 = FactoryGirl.create(:brewery, name:"Koff")
     @brewery2 = FactoryGirl.create(:brewery, name:"Schlenkerla")
     @brewery3 = FactoryGirl.create(:brewery, name:"Ayinger")
